@@ -8,16 +8,24 @@ class Settings(BaseSettings):
 
     GOOGLE_API_KEY: str = Field(..., description="Google API Key")
 
+
     GROQ_API_KEY: str = Field(..., description="Groq API Key")
+
+
+    PINECONE_API_KEY: str = Field(..., description="Pinecone API Key")
+
     
     LANGCHAIN_API_KEY: str = Field(..., description="LangSmith/LangChain API Key")
     LANGCHAIN_TRACING_V2: bool = Field(default=True, description="Enable LangSmith tracing")
     LANGCHAIN_PROJECT: str = Field(..., description="LangSmith project name")
 
+
+    HUGGINGFACE_EMBEDDING_MODEL: str = Field(default="sentence-transformers/all-mpnet-base-v2", description="HuggingFace Embedding model name")
     
+
     GEMINI_MODEL: str = Field(default="gemini-2.5-flash", description="GEMINI model name")
     GROQ_MODEL: str = Field(default="llama-3.3-70b-versatile", description="GROQ model name")
-    
+
 
     MAX_FILE_SIZE: int = Field(default=10 * 1024 * 1024, description="Max file size in bytes")
 

@@ -1,15 +1,24 @@
+from langchain_huggingface import HuggingFaceEmbeddings
 from core.config import get_settings
-from langchain.schema import Document
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
 settings = get_settings()
 
-
 class EmbedderModel:
+    '''
+    Loads and provides access to the HuggingFace embedding model.
+    Initialized once so embeddings can be generated efficiently.
+    '''
 
-    @staticmethod
-    def get_embedder():
-        return GoogleGenerativeAIEmbeddings(
-            model = "gemini-embedding-001" , 
-            google_api_key = settings.GOOGLE_API_KEY
+    def __init__(self):
+        self.embedder = HuggingFaceEmbeddings(
+            model_name = settings.HUGGINGFACE_EMBEDDING_MODEL
         )
+
+
+    
+    def get_embedder(self) :
+        '''
+        Returns the HuggingFaceEmbeddings object
+        '''
+
+        return self.embedder
