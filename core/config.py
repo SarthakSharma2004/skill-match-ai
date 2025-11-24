@@ -1,4 +1,5 @@
-from pydantic import BaseSettings , Field , SettingsConfigDict
+from pydantic_settings import BaseSettings , SettingsConfigDict
+from pydantic import Field
 from functools import lru_cache
 
 class Settings(BaseSettings):
@@ -21,10 +22,13 @@ class Settings(BaseSettings):
 
 
     HUGGINGFACE_EMBEDDING_MODEL: str = Field(default="sentence-transformers/all-mpnet-base-v2", description="HuggingFace Embedding model name")
-    
+
 
     GEMINI_MODEL: str = Field(default="gemini-2.5-flash", description="GEMINI model name")
     GROQ_MODEL: str = Field(default="llama-3.3-70b-versatile", description="GROQ model name")
+
+
+    REDIS_URL: str = Field(default="redis://localhost:6379/0", description="Redis URL")
 
 
     MAX_FILE_SIZE: int = Field(default=10 * 1024 * 1024, description="Max file size in bytes")
