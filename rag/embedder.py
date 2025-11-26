@@ -6,19 +6,11 @@ settings = get_settings()
 class EmbedderModel:
     '''
     Loads and provides access to the HuggingFace embedding model.
-    Initialized once so embeddings can be generated efficiently.
     '''
+    _embedder = None
 
-    def __init__(self):
-        self.embedder = HuggingFaceEmbeddings(
-            model_name = settings.HUGGINGFACE_EMBEDDING_MODEL
-        )
-
-
-    
-    def get_embedder(self) :
-        '''
-        Returns the HuggingFaceEmbeddings object
-        '''
-
-        return self.embedder
+    @staticmethod
+    def get_embedder():
+        if EmbedderModel._embedder is None:
+            EmbedderModel._embedder = HuggingFaceEmbeddings(model_name=settings.HUGGINGFACE_EMBEDDING_MODEL)
+        return EmbedderModel._embedder
